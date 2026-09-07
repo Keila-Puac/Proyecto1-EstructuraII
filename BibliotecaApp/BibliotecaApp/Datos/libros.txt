@@ -1,7 +1,0 @@
-L001;Cien Anios de Soledad;Gabriel Garcia Marquez;Novela;3;12
-L002;El Principito;Antoine de Saint-Exupery;Fabula;5;8
-L003;1984;George Orwell;Distopia;2;20
-L004;Rayuela;Julio Cortazar;Novela;4;3
-L005;El Aleph;Jorge Luis Borges;Cuento;6;1
-L006;Fahrenheit 451;Ray Bradbury;Distopia;3;15
-L007;Don Quijote de la Mancha;Miguel de Cervantes;Clasico;2;7
