@@ -1,9 +1,0 @@
-[
-  { "codigo": "L001", "titulo": "Cien Anios de Soledad", "autor": "Gabriel Garcia Marquez", "categoria": "Novela", "copiasDisponibles": 3, "vecesPrestado": 12 },
-  { "codigo": "L002", "titulo": "El Principito", "autor": "Antoine de Saint-Exupery", "categoria": "Fabula", "copiasDisponibles": 5, "vecesPrestado": 8 },
-  { "codigo": "L003", "titulo": "1984", "autor": "George Orwell", "categoria": "Distopia", "copiasDisponibles": 2, "vecesPrestado": 20 },
-  { "codigo": "L004", "titulo": "Rayuela", "autor": "Julio Cortazar", "categoria": "Novela", "copiasDisponibles": 4, "vecesPrestado": 3 },
-  { "codigo": "L005", "titulo": "El Aleph", "autor": "Jorge Luis Borges", "categoria": "Cuento", "copiasDisponibles": 6, "vecesPrestado": 1 },
-  { "codigo": "L006", "titulo": "Fahrenheit 451", "autor": "Ray Bradbury", "categoria": "Distopia", "copiasDisponibles": 3, "vecesPrestado": 15 },
-  { "codigo": "L007", "titulo": "Don Quijote de la Mancha", "autor": "Miguel de Cervantes", "categoria": "Clasico", "copiasDisponibles": 2, "vecesPrestado": 7 }
-]
