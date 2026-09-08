@@ -95,7 +95,7 @@ namespace BibliotecaApp
                 Console.WriteLine();
                 Console.WriteLine("----------------- MENÚ PRINCIPAL -----------------");
                 Console.WriteLine(" 1. Cargar libros desde archivo .csv");
-                Console.WriteLine(" 2. Registrar nuevo libro (manual)");
+                Console.WriteLine(" 2. Registrar nuevo libro");
                 Console.WriteLine(" 3. Buscar libro por código");
                 Console.WriteLine(" 4. Registrar préstamo");
                 Console.WriteLine(" 5. Registrar devolución");
@@ -113,40 +113,50 @@ namespace BibliotecaApp
                 switch (opcion)
                 {
                     case "1":
+                        Console.WriteLine("---Carga libros desde un archivo .csv---");
                         Console.Write("Ruta del archivo .csv: ");
                         string ruta = Console.ReadLine();
                         CargarDesdeArchivo(catalogo, ruta);
                         break;
                     case "2":
+                        Console.WriteLine("---Registrar un nuevo libro---");
                         RegistrarLibroManual(catalogo);
                         break;
                     case "3":
+                        Console.WriteLine("---Buscar libro por código---");
                         BuscarLibro(catalogo);
                         break;
                     case "4":
+                        Console.WriteLine("---Registrar Préstamo---");
                         RegistrarPrestamo(catalogo);
                         break;
                     case "5":
+                        Console.WriteLine("---Registrar Devolución---");
                         RegistrarDevolucion(catalogo);
                         break;
                     case "6":
+                        Console.WriteLine("---Listado de catalogo (Por Código)---");
                         ListarPorCodigo(catalogo);
                         break;
                     case "7":
+                        Console.WriteLine("---Lista de catalogo (Por Titulo)---");
                         ListarPorTitulo(catalogo);
                         break;
                     case "8":
+                        Console.WriteLine("---Top 5 Libros Mas Prestados---");
                         MostrarTopPrestados(catalogo);
                         break;
                     case "9":
+                        Console.WriteLine("---Eliminar Libro---");
                         EliminarLibro(catalogo);
                         break;
                     case "10":
+                        Console.WriteLine("---Estructura del Árbol B+---");
                         catalogo.Imprimir();
                         break;
                     case "0":
                         salir = true;
-                        Console.WriteLine("¡Hasta luego!");
+                        Console.WriteLine("Saliendo...");
                         break;
                     default:
                         Console.WriteLine("Opción no válida, intenta de nuevo.");
@@ -159,9 +169,7 @@ namespace BibliotecaApp
         // Carga masiva desde un archivo .csv con formato:
         // codigo,titulo,autor,categoria,copiasDisponibles[,vecesPrestado]
         // File.ReadAllLines es una función NATIVA usada solo como soporte
-        // auxiliar de lectura de archivo, tal como permite el enunciado; la
-        // lógica de dónde y cómo se guarda cada libro sigue siendo del
-        // Árbol B+ implementado por el estudiante.
+        // auxiliar de lectura de archivo
         // ---------------------------------------------------------------
         static void CargarDesdeArchivo(ArbolBMas arbol, string ruta)
         {
