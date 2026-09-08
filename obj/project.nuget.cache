@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "S9rir4jt4O0=",
+  "dgSpecHash": "K5oHUEIoQ8w=",
   "success": true,
-  "projectFilePath": "c:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj",
+  "projectFilePath": "C:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Keila Puac\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.30\\microsoft.netcore.app.ref.8.0.30.nupkg.sha512",
     "C:\\Users\\Keila Puac\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.30\\microsoft.windowsdesktop.app.ref.8.0.30.nupkg.sha512",

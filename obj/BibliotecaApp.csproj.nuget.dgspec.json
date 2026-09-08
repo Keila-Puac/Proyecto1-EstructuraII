@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj": {}
+    "C:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj": {
+    "C:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj",
+        "projectUniqueName": "C:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj",
         "projectName": "BibliotecaApp",
-        "projectPath": "c:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj",
+        "projectPath": "C:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\BibliotecaApp.csproj",
         "packagesPath": "C:\\Users\\Keila Puac\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\obj\\",
+        "outputPath": "C:\\Users\\Keila Puac\\OneDrive - Universidad Rafael Landivar\\Tareas URL\\Cuarto Semestre\\Estructura de Datos II\\Proyecto\\Proyecto1-EstructuraII\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Keila Puac\\AppData\\Roaming\\NuGet\\NuGet.Config"
