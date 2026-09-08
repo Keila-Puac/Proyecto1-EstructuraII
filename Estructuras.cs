@@ -5,28 +5,10 @@ namespace BibliotecaApp
     // =====================================================================
     //  ÁRBOL B+  (estructura principal del catálogo, indexada por Código)
     // =====================================================================
-    //
-    // JUSTIFICACIÓN DE USO:
-    // El catálogo necesita búsquedas MUY rápidas por código único, así como
-    // insertar/eliminar libros manteniendo los datos siempre ordenados y
-    // permitir un recorrido secuencial completo y eficiente (para listar
-    // todo el catálogo). Un Árbol B+ es ideal porque:
-    //   - Toda la información útil (los Libro) vive SOLO en las hojas.
-    //   - Las hojas están enlazadas entre sí (como una lista enlazada),
-    //     así que recorrer todo el catálogo en orden de código es O(n)
-    //     sin tener que "bajar y subir" por el árbol.
-    //   - Los nodos internos solo guardan claves "guía" para decidir el
-    //     camino de búsqueda, por lo que el árbol se mantiene bajo (poca
-    //     altura) incluso con muchos libros -> búsquedas casi O(log n).
-    //
-    // NodoB: nodo interno del árbol. Se usa "internal" (no lo necesitamos
-    // fuera de este archivo) y sus campos son públicos dentro del ensamblado
-    // para que ArbolBMas pueda manipularlos directamente (patrón común
-    // cuando el nodo es un simple "contenedor de datos").
     internal class NodoB
     {
-        // ORDEN = máximo número de HIJOS que puede tener un nodo interno.
-        // Por lo tanto el máximo de CLAVES por nodo es ORDEN - 1 = 3.
+        // Orden = 4
+        // Claves = 3.
         // Elegimos 4 porque es fácil de dibujar/seguir a mano (similar a un
         // árbol 2-3-4) y es más que suficiente para un catálogo de biblioteca.
         public const int ORDEN = 4;
@@ -41,10 +23,6 @@ namespace BibliotecaApp
         public NodoB(bool esHoja)
         {
             EsHoja = esHoja;
-            // Reservamos tamaño ORDEN (y no ORDEN-1) a propósito: así se puede
-            // insertar temporalmente una clave "de más" en el nodo, y recién
-            // después decidimos si hay que dividirlo (split). Es una técnica
-            // clásica que simplifica muchísimo el algoritmo de inserción.
             Claves = new int[ORDEN];
             if (esHoja)
                 Valores = new Libro[ORDEN];
@@ -70,8 +48,6 @@ namespace BibliotecaApp
 
         // -----------------------------------------------------------------
         // INSERTAR: inserta un libro identificado por su código único.
-        // Complejidad: O(log n). El llamador (Program.cs) es responsable de
-        // verificar que el código no exista todavía (los códigos son únicos).
         // -----------------------------------------------------------------
         public void Insertar(int clave, Libro valor)
         {
@@ -153,10 +129,7 @@ namespace BibliotecaApp
             }
         }
 
-        // Divide una HOJA llena en dos. En un B+, la primera clave de la
-        // hoja derecha se copia (no se "consume") como separador hacia el
-        // padre, porque esa clave debe seguir existiendo en la hoja para
-        // que las búsquedas por igualdad la encuentren.
+        // Divide una HOJA llena en dos.
         private ResultadoSplit DividirHoja(NodoB hoja)
         {
             int mitad = NodoB.ORDEN / 2;                 // p.ej. 4/2 = 2
@@ -178,9 +151,7 @@ namespace BibliotecaApp
             return new ResultadoSplit { ClavePromovida = nuevaHoja.Claves[0], NuevoNodo = nuevaHoja };
         }
 
-        // Divide un nodo INTERNO lleno en dos. Aquí (a diferencia de la hoja)
-        // la clave del medio SÍ sube al padre y NO se copia en ninguno de los
-        // dos nodos resultantes (así es un B+ "de manual").
+        // Divide un nodo INTERNO lleno en dos.
         private ResultadoSplit DividirInterno(NodoB nodo)
         {
             int mitad = nodo.NumClaves / 2;
@@ -200,10 +171,9 @@ namespace BibliotecaApp
             return new ResultadoSplit { ClavePromovida = clavePromovida, NuevoNodo = nuevoInterno };
         }
 
-        // -----------------------------------------------------------------
-        // BUSCAR: baja del nivel raíz hasta la hoja correcta en O(log n) y
-        // ahí hace una búsqueda lineal (el nodo es pequeño, ORDEN=4).
-        // -----------------------------------------------------------------
+        // ----------------
+        // BUSCAR
+        // ----------------
         public Libro Buscar(int clave)
         {
             if (raiz == null) return null;
@@ -223,23 +193,7 @@ namespace BibliotecaApp
         }
 
         // -----------------------------------------------------------------
-        // ELIMINAR: estrategia de "eliminar por reconstrucción".
-        //
-        // Un B+ "de libro de texto" elimina en el lugar (in-place) pidiendo
-        // prestadas claves a los nodos hermanos o fusionando nodos cuando un
-        // nodo queda con muy pocas claves. Esa lógica es correcta pero muy
-        // propensa a errores (hay que actualizar separadores en cascada,
-        // mantener la lista de hojas, etc.).
-        //
-        // Para este proyecto se optó, a propósito, por una estrategia más
-        // simple y 100% confiable: se recorre el árbol completo copiando
-        // todas las parejas (código, libro) EXCEPTO la que se elimina, se
-        // vacía el árbol y se reinsertan las que quedan usando el MISMO
-        // método Insertar ya probado. El resultado final es exactamente el
-        // mismo árbol balanceado y válido que produciría el algoritmo
-        // "in-place", solo que llegamos a él de una forma más segura.
-        // Esta es una decisión de diseño perfectamente defendible para un
-        // catálogo de tamaño moderado como el de una biblioteca.
+        // ELIMINAR
         // -----------------------------------------------------------------
         public void Eliminar(int clave)
         {
@@ -274,12 +228,7 @@ namespace BibliotecaApp
         }
 
         // -----------------------------------------------------------------
-        // RECORRER: visita todos los libros en orden ascendente de código,
-        // aprovechando la lista enlazada de hojas (por eso un B+ es tan
-        // bueno para generar listados completos: no hace falta recursión).
-        // Se recibe un delegado Action<Libro> en lugar de devolver una
-        // colección, para no depender de List<T> ni de ningún otro
-        // contenedor nativo de .NET.
+        // RECORRER
         // -----------------------------------------------------------------
         public void Recorrer(Action<Libro> accion)
         {
@@ -297,8 +246,7 @@ namespace BibliotecaApp
         }
 
         // -----------------------------------------------------------------
-        // IMPRIMIR: muestra la estructura interna del árbol nivel por nivel,
-        // útil para estudiar y para defender el proyecto ante el docente.
+        // MOSTRAR
         // -----------------------------------------------------------------
         public void Imprimir()
         {
@@ -334,18 +282,6 @@ namespace BibliotecaApp
     // =====================================================================
     //  MIN HEAP  (por Título)
     // =====================================================================
-    //
-    // JUSTIFICACIÓN DE USO:
-    // El montículo mínimo se usa para generar el listado del catálogo
-    // ORDENADO POR TÍTULO. En vez de ordenar con un algoritmo genérico,
-    // construimos un Min Heap con todos los libros (O(n)) y luego vamos
-    // extrayendo el mínimo repetidamente (cada extracción es O(log n)):
-    // esto es exactamente el algoritmo "Heap Sort" y da un listado
-    // alfabético en O(n log n) sin usar ninguna colección nativa de .NET.
-    //
-    // Implementación: heap binario clásico sobre un arreglo propio (T[])
-    // que nosotros mismos redimensionamos (no es List<T>, es un arreglo
-    // que administramos a mano con Array.Copy manual).
     public class MinHeapLibros
     {
         private Libro[] datos;
@@ -481,12 +417,6 @@ namespace BibliotecaApp
     // =====================================================================
     //  MAX HEAP  (por Veces Prestado)
     // =====================================================================
-    //
-    // JUSTIFICACIÓN DE USO:
-    // El montículo máximo se usa para responder rápidamente "¿cuáles son
-    // los libros más prestados?" (el Top 5 que pide el enunciado). Con un
-    // Max Heap basta con extraer el máximo 5 veces (O(log n) cada vez) en
-    // lugar de ordenar todo el catálogo completo para solo mostrar 5.
     public class MaxHeapLibros
     {
         private Libro[] datos;
