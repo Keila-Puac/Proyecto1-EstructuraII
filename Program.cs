@@ -135,11 +135,9 @@ namespace BibliotecaApp
                         RegistrarDevolucion(catalogo);
                         break;
                     case "6":
-                        Console.WriteLine("---Listado de catalogo (Por Código)---");
                         ListarPorCodigo(catalogo);
                         break;
                     case "7":
-                        Console.WriteLine("---Lista de catalogo (Por Titulo)---");
                         ListarPorTitulo(catalogo);
                         break;
                     case "8":
