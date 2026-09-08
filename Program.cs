@@ -3,12 +3,7 @@ using System.IO;
 
 namespace BibliotecaApp
 {
-    // =========================================================================
-    //  ENTIDAD LIBRO
-    // =========================================================================
-    // Es la información que viaja dentro de las hojas del Árbol B+ y dentro de
-    // los montículos. El Código es la llave única con la que se indexa en el
-    // Árbol B+.
+    //Información que se guarda en las hojas del arbol B+
     public class Libro
     {
         public int Codigo { get; set; }
@@ -34,7 +29,7 @@ namespace BibliotecaApp
 
         // Inserta un movimiento nuevo AL INICIO de la lista enlazada, así el
         // historial queda ordenado del más reciente al más antiguo sin tener
-        // que recorrer nada (inserción en cabeza = O(1)).
+        // que recorrer nada
         public void RegistrarMovimiento(string tipo)
         {
             NodoPrestamo nuevo = new NodoPrestamo(tipo, DateTime.Now);
@@ -64,16 +59,7 @@ namespace BibliotecaApp
         }
     }
 
-    // =========================================================================
     //  LISTA ENLAZADA DE PRÉSTAMOS (historial de un libro)
-    // =========================================================================
-    // JUSTIFICACIÓN: cada libro puede tener un número impredecible de
-    // préstamos/devoluciones a lo largo del tiempo. Solo necesitamos dos
-    // operaciones sobre este historial: agregar un movimiento nuevo (siempre
-    // al inicio) y recorrerlo secuencialmente para mostrarlo. Ese es el caso
-    // de uso perfecto para una lista enlazada simple: no necesitamos acceso
-    // aleatorio ni orden distinto al cronológico, así que no se justifica una
-    // estructura más compleja (árbol, heap, etc.) solo para esto.
     public class NodoPrestamo
     {
         public string Tipo;         // "Préstamo" o "Devolución"
